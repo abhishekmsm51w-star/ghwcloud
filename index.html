@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr Abhishek Todo List</title>
+
+<style>
+body{
+font-family: Arial, sans-serif;
+background:#0f172a;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
+color:white;
+}
+
+.container{
+background:#1e293b;
+padding:25px;
+border-radius:12px;
+width:380px;
+box-shadow:0 10px 25px rgba(0,0,0,0.4);
+}
+
+h2{
+text-align:center;
+margin-bottom:5px;
+}
+
+.subtitle{
+text-align:center;
+font-size:12px;
+color:#94a3b8;
+margin-bottom:15px;
+}
+
+.input-box{
+display:flex;
+gap:10px;
+}
+
+input{
+flex:1;
+padding:10px;
+border:none;
+border-radius:6px;
+outline:none;
+}
+
+button{
+padding:10px 15px;
+border:none;
+background:#22c55e;
+color:white;
+border-radius:6px;
+cursor:pointer;
+font-weight:bold;
+}
+
+button:hover{
+background:#16a34a;
+}
+
+ul{
+list-style:none;
+padding:0;
+margin-top:20px;
+}
+
+li{
+background:#334155;
+padding:10px;
+border-radius:6px;
+margin-bottom:8px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.delete{
+background:#ef4444;
+border:none;
+padding:5px 10px;
+border-radius:5px;
+color:white;
+cursor:pointer;
+}
+
+.delete:hover{
+background:#dc2626;
+}
+
+.footer{
+text-align:center;
+margin-top:15px;
+font-size:12px;
+color:#94a3b8;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>📝 Dr Abhishek Todo List</h2>
+<div class="subtitle">Co-Powered by ✨ Jadui Kitaab</div>
+
+<div class="input-box">
+<input type="text" id="todoInput" placeholder="Enter a task...">
+<button onclick="addTask()">Add</button>
+</div>
+
+<ul id="todoList"></ul>
+
+<div class="footer">
+Made with ❤️ | Dr Abhishek Todo List
+</div>
+
+</div>
+
+<script>
+
+function addTask(){
+let input=document.getElementById("todoInput");
+let task=input.value.trim();
+
+if(task==="") return;
+
+let li=document.createElement("li");
+
+li.innerHTML = `
+<span onclick="toggleTask(this)" style="cursor:pointer">${task}</span>
+<button class="delete" onclick="removeTask(this)">X</button>
+`;
+
+document.getElementById("todoList").appendChild(li);
+
+input.value="";
+}
+
+function removeTask(btn){
+btn.parentElement.remove();
+}
+
+function toggleTask(el){
+if(el.style.textDecoration==="line-through"){
+el.style.textDecoration="none";
+el.style.opacity="1";
+}else{
+el.style.textDecoration="line-through";
+el.style.opacity="0.6";
+}
+}
+
+</script>
+
+</body>
+</html>
